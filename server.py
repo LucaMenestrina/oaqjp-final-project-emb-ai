@@ -9,7 +9,10 @@ def sent_detector():
 
     response = emotion_detector(text_to_analyze)
 
-    return f"For the given statement, the system response is {response}"
+    if response["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
+    else:
+        return f"For the given statement, the system response is {response}"
 
 @app.route("/")
 def render_index_page():
